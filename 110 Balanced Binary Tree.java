@@ -18,8 +18,10 @@ class Solution {
             return 0;
         int l = maxdp(root.left);
         int r = maxdp(root.right);
-        if(Math.abs(l - r) > 1)
+        if (l == -1 || r == -1 || Math.abs(l - r) > 1) {
             res = false;
+            return -1;
+        }
         return 1 + Math.max(l, r);
     }
 }
