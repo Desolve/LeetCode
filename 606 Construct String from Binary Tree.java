@@ -34,7 +34,7 @@ class Solution {
     }
 }
 
-/* The above solutoin is simplify from the following solution, both written by myself,
+/* The above solutoin is simplified from the following solution, both written by myself,
 this one should be easier to understand but slower.
 class Solution {
     public String tree2str(TreeNode t) {
