@@ -41,6 +41,42 @@ class Solution {
         return dMap.size() == N ? res : -1; 
     }
 }
+/* Solution from CLLcode which beats 98.22% 
+class Solution {
+    public int networkDelayTime(int[][] times, int N, int K) {
+        int[] visited = new int[N+1];
+        Arrays.fill(visited, Integer.MAX_VALUE);
+        visited[K] = 0;
+        visited[0] = 0;
+        int[][] graph = new int[N+1][N+1];
+        // graph default non-connected
+        for(int i = 0; i < N+1; i++){
+            Arrays.fill(graph[i], -1);
+        }
+        // Build up the graph
+        for(int[] time : times){
+            graph[time[0]][time[1]] = time[2];
+        }
+        Queue<Integer> q = new LinkedList<>();
+        q.offer(K);
+        while(!q.isEmpty()){
+            int curr = q.poll();
+            for(int i = 1; i <= N; i++){
+                if(graph[curr][i] >= 0 && visited[i] > visited[curr] + graph[curr][i]){  // d[a]+w[a][b] < d[b] => update d[b]
+                    q.offer(i);
+                    visited[i] = visited[curr] + graph[curr][i];
+                }
+            }
+        }
+        // Check if there's any unvisited vertex
+        int max = 0;
+        for(int v : visited){
+            max = Math.max(v, max);
+        }
+        return max == Integer.MAX_VALUE ? -1 : max;
+    }
+}
+*/
 
 /* Bellman-Ford algorithm, Time complexity: O(N*E), Space complexity: O(N) by lakemorning
 class Solution {
