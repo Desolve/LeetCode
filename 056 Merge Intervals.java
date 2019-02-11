@@ -7,6 +7,33 @@
  *     Interval(int s, int e) { start = s; end = e; }
  * }
  */
+// From D_shaw
+// The sorting would NOT affect the result
+// The idea is that for the result distinct Interval, the latter one's start must > previous one's end.
+class Solution {
+    public List<Interval> merge(List<Interval> intervals) {
+        // sort start&end
+        int n = intervals.size();
+        int[] starts = new int[n];
+        int[] ends = new int[n];
+        for (int i = 0; i < n; i++) {
+            starts[i] = intervals.get(i).start;
+            ends[i] = intervals.get(i).end;
+        }
+        Arrays.sort(starts);
+        Arrays.sort(ends);
+        // loop through
+        List<Interval> res = new ArrayList<Interval>();
+        for (int i = 0, j = 0; i < n; i++) { // j is start of interval.
+            if (i == n - 1 || starts[i + 1] > ends[i]) {
+                res.add(new Interval(starts[j], ends[i]));
+                j = i + 1;
+            }
+        }
+        return res;
+    }
+}
+/*
 class Solution {
     class compareStart implements Comparator<Interval> {
         public int compare(Interval a, Interval b) {
@@ -33,7 +60,7 @@ class Solution {
         res.add(new Interval(start, end));
         return res;
     }
-}
+}*/
 
 /* Faster solution by elog2n
 // Use array to log all intervals, 0 -> none, 1 -> in interval, 2 -> start point
