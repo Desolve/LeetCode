@@ -18,3 +18,15 @@ class Solution:
         if left.val != right.val:
             return False
         return self.isSym(left.left, right.right) and self.isSym(left.right, right.left)
+
+''' Iterative solution(slower)
+class Solution:
+    def isSymmetric(self, root: TreeNode) -> bool:
+        nodes = [root.left, root.right] if root else []
+        while nodes:
+            l, r = nodes.pop(), nodes.pop()
+            if l == r: continue
+            if not l or not r or l.val != r.val: return False
+            nodes.extend([l.left, r.right, l.right, r.left])
+        return True
+'''
