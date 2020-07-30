@@ -26,8 +26,27 @@ class Solution {
         st.push(curr);
     }
 }
-
-/* faster solution without stack
+/* faster solution
+class Solution {
+    public void flatten(TreeNode root) {
+        if (root == null) return;
+        TreeNode l = root.left;
+        TreeNode r = root.right;
+        flatten(root.left);
+        flatten(root.right);
+        
+        root.left = null;
+        root.right = l;
+        
+        while (root.right != null) 
+            root = root.right;  
+        
+        root.right = r;
+        
+    }
+}
+*/
+/*
 class Solution {
     public void flatten(TreeNode root) {
         if (root != null) {

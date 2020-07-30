@@ -6,6 +6,25 @@
  *     ListNode(int x) { val = x; }
  * }
  */
+
+class Solution {
+    public ListNode removeElements(ListNode head, int val) {
+        ListNode dummy = new ListNode(0);
+        dummy.next = head;
+        ListNode curr = dummy;
+        
+        while (curr.next != null) {
+            if (curr.next.val == val) {
+                curr.next = curr.next.next;
+            } else {
+                curr = curr.next;
+            }
+        }
+        
+        return dummy.next;
+    }
+}
+/*
 class Solution {
     public ListNode removeElements(ListNode head, int val) {
         if (head == null) return null;
@@ -17,4 +36,4 @@ class Solution {
         if (head.val == val) return head.next;
         else return head;
     }
-}
+}*/

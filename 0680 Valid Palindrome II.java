@@ -1,14 +1,14 @@
 class Solution {
     public boolean validPalindrome(String s) {
-        char[] ca = s.toCharArray();
-        for (int i = 0, j = ca.length - 1; i < j; ++i, --j)
-            if (ca[i] != ca[j]) return isp(ca, i + 1, j) || isp(ca, i, j - 1);
+        char[] arr = s.toCharArray();
+        for (int i = 0, j = arr.length - 1; i < j; ++i, --j)
+            if (arr[i] != arr[j]) return isp(arr, i + 1, j) || isp(arr, i, j - 1);
         return true;
     }
 
-    private boolean isp(char[] ca, int l, int r) {
-        for (int i = l, j = r; i < j; ++i, --j)
-            if (ca[i] != ca[j]) return false;
+    private boolean isp(char[] arr, int l, int r) {
+        for (; l < r; ++l, --r)
+            if (arr[l] != arr[r]) return false;
         return true;
     }
 }

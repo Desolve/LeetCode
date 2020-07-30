@@ -10,6 +10,20 @@ class Solution:
             elif dic[s[i]] != t[i]:
                 return False
         return True
+''' Use two dictionaries
+class Solution:
+    def isIsomorphic(self, s: str, t: str) -> bool:
+        if len(s) != len(t): return False
+        ds, dt = {}, {}
+        for i in range(len(s)):
+            if s[i] not in ds and t[i] not in dt:
+                ds[s[i]] = t[i]
+                dt[t[i]] = s[i]
+            elif ds.get(s[i], 0) != t[i] or dt.get(t[i], 0) != s[i]:
+                return False
+        return True
+'''
+
 ''' Faster solution from caikehe
 class Solution:
     def isIsomorphic(self, s: str, t: str) -> bool:
